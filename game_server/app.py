@@ -10,7 +10,8 @@ app = Flask(__name__)
 sessions = []
 data_manager = DataManager()
 
-INACTIVITY_TIMEOUT = 1000
+INACTIVITY_TIMEOUT = 30
+
 
 @app.route('/join_game', methods=['POST'])
 def join_game():
@@ -114,6 +115,7 @@ def get_game_state():
 
 def check_inactivity():
     current_time = time.time()
+
     inactive_players = []
     for session in sessions:
         last_activity_1 = session.player1['last_activity']
@@ -122,14 +124,19 @@ def check_inactivity():
             inactive_players.append(session.player1)
         if current_time - last_activity_2 > INACTIVITY_TIMEOUT:
             inactive_players.append(session.player2)
+
+        print(f"Player 1 id: {session.player1['player']} | last activity: {current_time - last_activity_1}")
+        print(f"Player 2 id: {session.player2['player']} | last activity: {current_time - last_activity_2}")
     for player_id in inactive_players:
+        index = 0
         for session in sessions:
-            if player_id == session.player1['player']:
-                print(f"Player {player_id} has been disconnected due to inactivity. Session ended!")
-                sessions.remove(session)
-            elif player_id == session.player2['player']:
-                print(f"Player {player_id} has been disconnected due to inactivity. Session ended!")
-                sessions.remove(session)
+            if player_id == session.player1:
+                print(f"Player {session.player1['player']} has been disconnected due to inactivity. Session ended!")
+                del sessions[index]
+            elif player_id == session.player2:
+                print(f"Player {session.player2['player']} has been disconnected due to inactivity. Session ended!")
+                del sessions[index]
+            index += 1
 
 
 def restart_game(session):

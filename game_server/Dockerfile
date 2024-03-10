@@ -5,6 +5,7 @@ FROM python:3.11-slim
 
 # Устанавливаем зависимости
 RUN pip install Flask
+RUN pip install requests
 
 # Копируем приложение в контейнер
 WORKDIR /app
