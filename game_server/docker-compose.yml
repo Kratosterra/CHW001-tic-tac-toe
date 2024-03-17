@@ -14,7 +14,7 @@ services:
       - server_network
 
   db:
-    image: "python:3.9-slim"
+    image: "python:3.11-slim"
     volumes:
       - ./database:/database
 
