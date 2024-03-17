@@ -57,7 +57,7 @@ def match():
             case 1:
                 gameinstance.display_board()
                 print("Now is your turn. Loading...")
-                time.sleep(2)
+                time.sleep(3.5)
                 gameinstance.update()
                 if gameinstance.current_player == gameinstance.your_sign:
                     gameinstance.display_board()
