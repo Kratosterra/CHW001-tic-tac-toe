@@ -15,16 +15,18 @@ class DataManager:
         self.c.execute('''UPDATE scores SET wins = wins + 1 WHERE player_id = ?''', (player_id,))
         self.conn.commit()
 
-        url = 'http://localhost:8000/update_score'
+        print('UPDATE SCORE')
+
+        url = 'http://record_server-app:8000/update_score'
         data = {'player_id': player_id, 'score': 1}
         try:
             response = requests.post(url, json=data)
             if response.status_code == 200:
                 print(f'Score updated for player {player_id} in remote application.')
             else:
-                print(f'Failed to update score for player {player_id} in remote application.')
+                print(f'No answer. Failed to update score for player {player_id} in remote application.')
         except Exception as e:
-            print(f'Failed to update score for player {player_id} in remote application.')
+            print(f'Failed to update score for player {player_id} in remote application.\n{e}')
 
     def get_scores(self, player_id):
         self.c.execute('''SELECT wins FROM scores WHERE player_id = ?''', (player_id, ))
