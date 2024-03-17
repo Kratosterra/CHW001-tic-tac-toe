@@ -19,4 +19,4 @@ def update_score():
     return jsonify({'message': f'Score updated for player {player_id}.'}), 200
 
 if __name__ == '__main__':
-    app.run(host="localhost", port=8000, debug=True)
+    app.run(host='0.0.0.0', port=8000, debug=True)
