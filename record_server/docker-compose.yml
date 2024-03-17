@@ -7,10 +7,19 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
+    container_name: record_server-app
     depends_on:
       - db
+    networks:
+      - server_network
 
   db:
-    image: "sqlite:latest"
+    image: "python:3.9-slim"
     volumes:
-      - ./database:./database
+      - ./database:/database
+    networks:
+      - server_network
+
+networks:
+  server_network:
+    external: true

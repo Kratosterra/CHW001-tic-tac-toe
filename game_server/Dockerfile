@@ -13,5 +13,3 @@ COPY . /app
 
 # Указываем команду для запуска приложения
 CMD ["python", "app.py"]
-
-ENTRYPOINT ["top", "-b"]

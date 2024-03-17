@@ -7,10 +7,17 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
+    container_name: game_server-app
     depends_on:
       - db
+    networks:
+      - server_network
 
   db:
-    image: "sqlite:latest"
+    image: "python:3.9-slim"
     volumes:
-      - ./database:./database
+      - ./database:/database
+
+networks:
+  server_network:
+    external: true
