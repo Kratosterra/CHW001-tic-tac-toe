@@ -120,6 +120,6 @@ class GameInstance:
             response = requests.post(url, json=data)
             return response
         except Exception as e:
-            print(f'Error on connecting to remote application.\n.')
+            print(f'Error on connecting to remote application.\n{e}')
             self.session = False
             return None
