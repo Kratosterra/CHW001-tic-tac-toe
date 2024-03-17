@@ -4,6 +4,9 @@
 #### Подготовил:
 > Шарапов Егор Сергеевич, БПИ219
 
+### Требования
+> - Для клиента: **Python 3.11**
+
 ## Дополнительная информация
 #### [Коллекция на Postman](https://www.postman.com/mission-technologist-87573140/workspace/agents/collection/27605275-db3b9b2e-8bbd-4a1d-8dae-02b8b648af44?action=share&creator=27605275)
 
@@ -16,6 +19,7 @@
 
 - **sqlite3**
 - **time**
+- **requests**
 - **flask**
 
 ## Структура проекта
@@ -75,11 +79,18 @@ docker-compose up --build
 cd ./game_client
 ```
 
+>*При отсутсвии модуля requests:*
+>```BASH
+>pip install requests
+>```
+
 Запускаем 
 
 ```BASH
 python client.py
 ```
+
+
 
 > Далее действуем по инструкциям, подключайтесь с разными id. 
 > Автоматическая система мачмейкинга подберет лобби каждому из клиентов.
